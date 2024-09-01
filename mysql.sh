@@ -16,7 +16,7 @@ VALIDATE(){
 }
 
 if [ $ID -ne 0 ]; then
-    echo "You are not a root user, try using sudo access"
+    echo -e "$R You are not a root user $N, $Y try using sudo access $N"
     exit 1
 fi
 
