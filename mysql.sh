@@ -20,6 +20,25 @@ if [ $ID -ne 0 ]; then
     exit 1
 fi
 
-echo -e "Script excecution $Y started $N"
-VALIDATE $?
+# Developer has chosen the database MySQL. Install MySQL Server 8.0.x
+dnf install mysql-server -y
+VALIDATE $? "Installing mySQL server"
 
+# Start MySQL Service
+systemctl enable mysqld
+VALIDATE $? "Enabling MySQL"
+
+systemctl start mysqld
+VALIDATE $? "Started MySQL"
+
+# change the default root password in order to start using the database service. 
+# Using password ExpenseApp@1
+
+if [ $? -ne 0 ]; then
+    echo -e "MySQL Password not set up, $Y SETTING NOW $N"
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting password"
+else
+    echo -e "MySQL password already set up.. $Y SKIPPING $N"
+
+fi
