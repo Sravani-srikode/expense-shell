@@ -63,7 +63,7 @@ VALIDATE $? "Extracting backend application code"
 npm install &>> $LOG_FILE
 
 # setup a new service in systemd
-cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
+cp /home/repos/expense-shell/backend.service /etc/systemd/system/backend.service
 
 # load schema to the Database
 dnf install mysql -y &>> $LOG_FILE # Installing mysql client
