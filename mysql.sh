@@ -49,3 +49,7 @@ else
     echo -e "MySQL password already set up.. $Y SKIPPING $N" | tee -a $LOG_FILE
 
 fi
+
+# check data by using client package called mysql
+# mysql -h <host-address> -u root -p<password>
+mysql
