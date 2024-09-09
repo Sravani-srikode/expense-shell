@@ -56,7 +56,7 @@ VALIDATE $? "Downloading backend code"
 
 cd /app
 rm -rf /app/* #remove existing code
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "Extracting backend application code"
 
 # Install dependencies 
@@ -69,7 +69,7 @@ cp /home/repos/expense-shell/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y &>> $LOG_FILE # Installing mysql client
 VALIDATE $? "Installing mysql Client"
 
-mysql -h 172.31.41.176 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE
+mysql -h 172.31.41.176 -uroot -pExpenseApp@1 < /app/schema/backend.service &>> $LOG_FILE
 VALIDATE $? "Loading Schema"
 
 # Reload Service
