@@ -69,7 +69,7 @@ cp /home/repos/expense-shell/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y &>> $LOG_FILE # Installing mysql client
 VALIDATE $? "Installing mysql Client"
 
-mysql -h 172.31.41.176 -uroot -pExpenseApp@1 < /app/schema/backend.service &>> $LOG_FILE
+mysql -h 172.31.32.64 -uroot -pExpenseApp@1 < /app/schema/backend.service &>> $LOG_FILE
 VALIDATE $? "Loading Schema"
 
 # Reload Service
