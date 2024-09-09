@@ -54,4 +54,4 @@ fi
 
 # check data by using client package called mysql
 # mysql -h <host-address> -u root -p<password>
-mysql
+# mysql
