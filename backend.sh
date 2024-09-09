@@ -20,7 +20,7 @@ VALIDATE(){
     fi
 }
 
-echo "Srript started at: $(date)" | tee -a $LOG_FILE
+echo "Script started at: $(date)" | tee -a $LOG_FILE
 
 if [ $ID -ne 0 ]; then
     echo -e "$R You are not a root user $N, $Y try using sudo access $N"
@@ -69,7 +69,7 @@ cp /home/repos/expense-shell/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y &>> $LOG_FILE # Installing mysql client
 VALIDATE $? "Installing mysql Client"
 
-mysql -h 54.224.227.120 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE
+mysql -h 172.31.41.176 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE
 VALIDATE $? "Loading Schema"
 
 # Reload Service
