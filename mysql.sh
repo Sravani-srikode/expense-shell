@@ -20,7 +20,7 @@ VALIDATE(){
     fi
 }
 
-echo "Srript started at: $(date)" | tee -a $LOG_FILE
+echo "Script started at: $(date)" | tee -a $LOG_FILE
 
 if [ $ID -ne 0 ]; then
     echo -e "$R You are not a root user $N, $Y try using sudo access $N"
