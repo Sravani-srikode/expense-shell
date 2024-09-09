@@ -38,6 +38,8 @@ VALIDATE $? "Enabling MySQL" &>>LOG_FILE
 systemctl start mysqld
 VALIDATE $? "Starting MySQL" &>>LOG_FILE
 
+# mysql -h mysql.daws81s.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+
 # change the default root password in order to start using the database service. 
 # Using password ExpenseApp@1
 
