@@ -28,7 +28,7 @@ if [ $ID -ne 0 ]; then
     exit 1
 fi
 
-# Developer has chosen Nginx as a web server. Install Nginx Web Server.
+# Install Nginx Web Server.
 dnf install nginx -y &>>$LOG_FILE
 VALIDATE $? "Installing Nginx"
 
