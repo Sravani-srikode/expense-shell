@@ -1,9 +1,9 @@
 #!/bin/bash
 
 LOGS_FOLDER="/var/logs/expense"
-SCRIPT_NAME=$(echo $0 | cut -d '.' -f1)
-TIMESTAMP=$(date +Y%-m%-d%-H%-M%-S%)
-LOGS_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
+SCRIPT_NAME=$(basename "$0" | cut -d '.' -f1)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER
 
 ID=$(id -u)
@@ -13,7 +13,7 @@ Y="\e[33m"
 N="\e[0m"
 
 VALIDATE(){
-    if [ $1 -eq 0 ]; then
+    if [ $1 -ne 0 ]; then
         echo -e "$2 ... $R failed $N" | tee -a $LOG_FILE
         exit 1
     else
@@ -46,11 +46,12 @@ VALIDATE $? "Removing default content"
 
 # Download frontend content
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOG_FILE
+VALIDATE $? "Downloading frontend content"
 
 # Extract the frontend content
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$LOG_FILE
-VALIDATE $? "Extract frontend code"
+VALIDATE $? "Extracting frontend code"
 
 # Copy expense configuration
 cp /home/devops-aws/repos/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
@@ -59,4 +60,3 @@ VALIDATE $? "Copying expense configuration"
 # Restart Nginx
 systemctl restart nginx &>>$LOG_FILE
 VALIDATE $? "Restarting Nginx"
-
