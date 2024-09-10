@@ -53,7 +53,7 @@ unzip /tmp/frontend.zip &>>$LOG_FILE
 VALIDATE $? "Extract frontend code"
 
 # Copy expense configuration
-cp /home/repos/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
+cp /home/devops-aws/repos/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
 VALIDATE $? "Copying expense configuration"
 
 # Restart Nginx

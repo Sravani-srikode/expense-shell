@@ -63,13 +63,13 @@ VALIDATE $? "Extracting backend application code"
 npm install &>> $LOG_FILE
 
 # setup a new service in systemd
-cp /home/repos/expense-shell/backend.service /etc/systemd/system/backend.service
+cp /home/devops-aws/repos/expense-shell/backend.service /etc/systemd/system/backend.service
 
 # load schema to the Database
 dnf install mysql -y &>> $LOG_FILE # Installing mysql client
 VALIDATE $? "Installing mysql Client"
 
-mysql -h 172.31.32.64 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE
+mysql -h 172.31.81.152 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE
 VALIDATE $? "Loading Schema"
 
 # Reload Service
