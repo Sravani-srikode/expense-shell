@@ -12,6 +12,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+echo "Script started at $(date)" | tee -a $LOG_FILE
+
 VALIDATE(){
     if [ $1 -ne 0 ]; then
         echo -e "$2 ... $R failed $N" | tee -a $LOG_FILE
@@ -21,7 +23,6 @@ VALIDATE(){
     fi
 }
 
-echo "Script started at $(date)" | tee -a $LOG_FILE
 
 if [ $ID -ne 0 ]; then
     echo -e "$R Error: This script must be run as root $N"
